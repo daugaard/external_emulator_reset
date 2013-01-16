@@ -1,0 +1,15 @@
+#!/bin/sh
+# Installs the external_emulator_reset scripts and ensures it is started opun start up
+# By Soren Blond Daugaard (sbd(at)ineptum.dk
+
+
+# Install!
+echo "Installing the External Emulator Reset Script (you must be sudo)"
+
+chmod +x bin/external_emulator_reset.py
+chmod +x init/external_emulator_reset
+cp bin/external_emulator_reset.py /usr/bin/external_emulator_reset
+cp init/external_emulator_reset /etc/init.d/external_emulator_reset
+cp config/external_emulator_reset.conf /etc/external_emulator_reset.conf
+
+sudo update-rc.d external_emulator_reset default

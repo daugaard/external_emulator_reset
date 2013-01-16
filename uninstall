@@ -1,0 +1,9 @@
+#!/bin/sh
+# Uninstalls the external_emulator_reset scripts 
+# By Soren Blond Daugaard (sbd(at)ineptum.dk
+
+sudo update-rc.d external_emulator_reset remove
+
+rm /usr/bin/external_emulator_reset
+rm /etc/external_emulator_reset.conf
+rm /etc/init.d/external_emulator_reset

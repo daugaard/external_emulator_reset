@@ -1,0 +1,30 @@
+#!/bin/sh 
+# /etc/init.d/external_emulator_reset
+# By Soren Blond Daugaard (sbd(at)ineptum.dk)
+
+### BEGIN INIT INFO
+# Provides: external_emulator_reset
+# Required-Start: 
+# Required-Stop: 
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Enables an external reset button for raspberry-pi emulator stations. 
+# Description: Starts the awesome external emulator reset button service. This samples the button every second - if pressed it kills all known emulator processes
+### END INIT INFO
+
+case "$1" in 
+	start)
+		echo "Starting External Emulator Reset"
+		/usr/bin/external_emulator_reset &
+		;;
+	stop)
+		echo "Stoping External Emulator Reset"
+		killall external_emulator_reset
+		;;
+	*)
+		echo "Usage: /etc/init.d/external_emulator_reset {start|stop}"
+		exit 1
+		;;
+esac
+
+exit 0
