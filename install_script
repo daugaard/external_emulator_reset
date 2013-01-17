@@ -6,7 +6,6 @@
 # Install!
 echo "Installing the External Emulator Reset Script (you must be sudo)"
 
-apt-get install -y python-metaconfig
 apt-get install -y python-rpi.gpio
 
 chmod +x bin/external_emulator_reset.py
@@ -15,4 +14,4 @@ cp bin/external_emulator_reset.py /usr/bin/external_emulator_reset
 cp init/external_emulator_reset /etc/init.d/external_emulator_reset
 cp config/external_emulator_reset.conf /etc/external_emulator_reset.conf
 
-sudo update-rc.d external_emulator_reset default
+update-rc.d external_emulator_reset defaults

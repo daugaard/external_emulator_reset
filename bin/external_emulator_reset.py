@@ -12,23 +12,27 @@ import time
 import os
 import signal
 import subprocess
+import ConfigParser
+
+config = ConfigParser.ConfigParser()
+config.readfp(open('/etc/external_emulator_reset.conf'))
+
+button_pin = config.getint('General','BUTTON_PIN')
+emulators = config.get('General','EMULATORS')
+sleep_interval = config.getint('General','POLL_TIME')
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.IN)
+GPIO.setup(button_pin, GPIO.IN)
 
 def kill_emulators():
-	proc = subprocess.Popen(["pgrep","osmose"],  stdout=subprocess.PIPE)
-	for pid in proc.stdout:
-		os.kill(int(pid),signal.SIGTERM)
-	proc = subprocess.Popen(["pgrep","retroarch"],  stdout=subprocess.PIPE)
-	for pid in proc.stdout:
-		os.kill(int(pid),signal.SIGTERM)
-	
+	for emulator in emulators.split(','):
+		proc = subprocess.Popen(["pgrep",emulator],  stdout=subprocess.PIPE)
+		for pid in proc.stdout:
+			os.kill(int(pid),signal.SIGTERM)
 
 
 while 1:
-	input_value = GPIO.input(4)
+	input_value = GPIO.input(button_pin)
 	if not input_value:
-		print "External reset received - Killing emulators"
 		kill_emulators()
-	time.sleep(1)
+	time.sleep(sleep_interval)
