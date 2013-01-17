@@ -2,7 +2,9 @@ External Emulator Reset script for Raspberry Pi
 ===============================================
 By Soren Blond Daugaard
 
-The External Emulator Reset script will monitor an external button on Raspberry Pi and reset all emulators when pressed.
+The External Emulator Reset script will monitor an external button on Raspberry Pi and reset all game emulators when pressed. This is for use with a Raspberry Pi that is programmed to work as a gaming console and only has joypad inputs.
+
+To program your Raspberry Pi as a game console take a look at the RetroPie project (https://github.com/petrockblog/RetroPie-Setup). 
 
 Install
 -------
