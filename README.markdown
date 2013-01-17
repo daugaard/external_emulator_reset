@@ -8,7 +8,9 @@ Install
 -------
 Install on the pi by doing the following:
 > git clone git://github.com/daugaard/external_emulator_reset.git
+
 > cd external_emulator_reset
+
 > sudo ./install_script
 
 The script will now start every time the pi is booted. Uninstall script is also included if needed.
